@@ -8,7 +8,7 @@ class Lottery extends Component {
       return <button onClick={ actions.registerTicket }>Buy Ticket</button>
     }
 
-    return <button>Check to win</button>
+    return <button onClick={ actions.finish }>Check to win</button>
   }
 
   renderTickets() {

@@ -2,27 +2,40 @@ import { getRandomNumber, getRandomColor } from './utils'
 
 export function registerTicket() {
     let newTicket = {
-        number : getRandomNumber(),
-        color  : getRandomColor()
+        number: getRandomNumber(),
+        color: getRandomColor()
     }
 
-    this.setState( ( prevState ) => {
-        prevState.tickets.push( newTicket )
+    this.setState((prevState) => {
+        prevState.tickets.push(newTicket)
 
         return {
-            tickets             :   prevState.tickets,
-            remainingTickets    :   -- prevState.remainingTickets
+            tickets: prevState.tickets,
+            remainingTickets: --prevState.remainingTickets
         }
-    } )
+    })
 }
 
-export function removeTicket( index ) {
-    this.setState( ( prevState ) => {
-        prevState.tickets.splice( index, 1 )
+export function removeTicket(index) {
+    this.setState((prevState) => {
+        prevState.tickets.splice(index, 1)
 
         return {
-            tickets             :   prevState.tickets,
-            remainingTickets    :   ++ prevState.remainingTickets
+            tickets: prevState.tickets,
+            remainingTickets: ++prevState.remainingTickets
         }
+    })
+}
+
+export function finish() {
+    this.setState({ finished: true })
+}
+
+export function reset() {
+    this.setState({
+        winningNumber: getRandomNumber(),
+        tickets: [],
+        remainingTickets: 5,
+        finished: false
     })
 }

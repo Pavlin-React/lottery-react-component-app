@@ -1,8 +1,9 @@
 import './App.css';
-import { Component }        from 'react'
-import { getRandomNumber }  from './Helper/utils'
-import { registerTicket, removeTicket }   from './Helper/actions'
-import Lottery              from './Components/Lottery'
+import { Component }                                      from 'react'
+import { getRandomNumber }                                from './Helper/utils'
+import { registerTicket, removeTicket, finish, reset }    from './Helper/actions'
+import Lottery                                            from './Components/Lottery'
+import Final                                              from './Components/Final'
 
 class App extends Component {
   constructor( props ) {
@@ -17,14 +18,29 @@ class App extends Component {
 
     this.registerTicket = registerTicket.bind( this )
     this.removeTicket   = removeTicket.bind( this )
+    this.finish         = finish.bind( this )
+    this.reset          = reset.bind( this )
   }
 
   renderApp() {
-    let { tickets, remainingTickets } = this.state
-    let actions                       = {}
-    actions.registerTicket            = this.registerTicket
-    actions.removeTicket              = this.removeTicket
-    
+    let { tickets, remainingTickets, finished, winningNumber } = this.state
+    let actions                               = {}
+    if ( finished ) {
+      actions.reset = this.reset 
+      return(
+        <Final
+          actions       = { actions } 
+          tickets       = { tickets }
+          winningNumber = { winningNumber }
+        />
+      )
+    }
+
+    actions.registerTicket                    = this.registerTicket
+    actions.removeTicket                      = this.removeTicket
+    actions.finish                            = this.finish
+    actions.reset                             = this.reset
+
     return(
       <Lottery
         actions           = { actions }
