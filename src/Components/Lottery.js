@@ -7,6 +7,8 @@ class Lottery extends Component {
     if ( remainingTickets > 0 ) {
       return <button onClick={ actions.registerTicket }>Buy Ticket</button>
     }
+
+    return <button>Check to win</button>
   }
 
   renderTickets() {
