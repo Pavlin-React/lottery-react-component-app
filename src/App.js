@@ -1,7 +1,7 @@
 import './App.css';
 import { Component }        from 'react'
 import { getRandomNumber }  from './Helper/utils'
-import { registerTicket }   from './Helper/actions'
+import { registerTicket, removeTicket }   from './Helper/actions'
 import Lottery              from './Components/Lottery'
 
 class App extends Component {
@@ -16,23 +16,26 @@ class App extends Component {
     }
 
     this.registerTicket = registerTicket.bind( this )
+    this.removeTicket   = removeTicket.bind( this )
   }
 
   renderApp() {
+    let { tickets, remainingTickets } = this.state
+    let actions                       = {}
+    actions.registerTicket            = this.registerTicket
+    actions.removeTicket              = this.removeTicket
     
-    let actions = {}
-    actions.registerTicket = this.registerTicket
     return(
       <Lottery
         actions           = { actions }
-        remainingTickets  = { this.state.remainingTickets }
+        tickets           = { tickets }
+        remainingTickets  = { remainingTickets }
 
       />
     )
   }
 
   render() {
-    console.log(this.state.tickets)
     return(
       <div className='App'>
          { this.renderApp() }

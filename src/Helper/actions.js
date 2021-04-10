@@ -1,9 +1,9 @@
-import { getRandomNumber } from './utils'
+import { getRandomNumber, getRandomColor } from './utils'
 
 export function registerTicket() {
     let newTicket = {
         number : getRandomNumber(),
-        color  : 'red'
+        color  : getRandomColor()
     }
 
     this.setState( ( prevState ) => {
@@ -12,6 +12,17 @@ export function registerTicket() {
         return {
             tickets             :   prevState.tickets,
             remainingTickets    :   -- prevState.remainingTickets
+        }
+    } )
+}
+
+export function removeTicket( index ) {
+    this.setState( ( prevState ) => {
+        prevState.tickets.splice( index, 1 )
+
+        return {
+            tickets             :   prevState.tickets,
+            remainingTickets    :   ++ prevState.remainingTickets
         }
     })
 }

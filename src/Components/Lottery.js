@@ -1,5 +1,5 @@
 import { Component } from 'react'
-
+import LotteryTicket from './LotteryTicket'
 
 class Lottery extends Component {
   renderButton() {
@@ -9,6 +9,23 @@ class Lottery extends Component {
     }
   }
 
+  renderTickets() {
+    let { tickets, actions }    = this.props
+    let lotteryTicketActions    = { removeTicket: actions.removeTicket }
+    let LotteryTickets          = tickets.map( (ticket, index) => {
+      return (
+        <LotteryTicket
+          actions = { lotteryTicketActions }
+          color   = { ticket.color }
+          number  = { ticket.number }
+          index   = { index }
+          key     = { index }
+        />
+      )
+    })
+    return LotteryTickets
+  }
+
   render() {
     return(
       <>
@@ -16,6 +33,9 @@ class Lottery extends Component {
         { this.renderButton() }
         <br />
         <small>Rest: { this.props.remainingTickets }</small>
+        <br />
+        <hr />
+        { this.renderTickets() }
       </>
     )
   }
