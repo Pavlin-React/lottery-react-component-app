@@ -1,8 +1,8 @@
 import { getRandomNumber } from './utils'
 
-export function registerTickets() {
+export function registerTicket() {
     let newTicket = {
-        number : getRandomNumber,
+        number : getRandomNumber(),
         color  : 'red'
     }
 
@@ -10,8 +10,8 @@ export function registerTickets() {
         prevState.tickets.push( newTicket )
 
         return {
-            remainingTickets    :   -- prevState.remainingTickets,
-            tickets             :   prevState.tickets
+            tickets             :   prevState.tickets,
+            remainingTickets    :   -- prevState.remainingTickets
         }
     })
 }

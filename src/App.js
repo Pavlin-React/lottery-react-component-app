@@ -1,6 +1,7 @@
-import React, { Component }        from 'react'
 import './App.css';
+import { Component }        from 'react'
 import { getRandomNumber }  from './Helper/utils'
+import { registerTicket }   from './Helper/actions'
 import Lottery              from './Components/Lottery'
 
 class App extends Component {
@@ -13,12 +14,18 @@ class App extends Component {
       remainingTickets  : 5,
       finished          : false
     }
+
+    this.registerTicket = registerTicket.bind( this )
   }
 
   renderApp() {
+    
+    let actions = {}
+    actions.registerTicket = this.registerTicket
     return(
       <Lottery
-        remainingTickets = { this.state.remainingTickets }
+        actions           = { actions }
+        remainingTickets  = { this.state.remainingTickets }
 
       />
     )

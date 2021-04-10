@@ -1,21 +1,22 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 
 
 class Lottery extends Component {
   renderButton() {
-    if ( this.props.remainingTickets > 0 ) {
-      return <button>Buy Ticket</button>
+    let { remainingTickets, actions } = this.props
+    if ( remainingTickets > 0 ) {
+      return <button onClick={ actions.registerTicket }>Buy Ticket</button>
     }
   }
 
   render() {
     return(
-      <div>
+      <>
         <h2>Lottery</h2>
         { this.renderButton() }
         <br />
         <small>Rest: { this.props.remainingTickets }</small>
-      </div>
+      </>
     )
   }
 }
