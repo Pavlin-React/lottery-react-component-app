@@ -3,9 +3,15 @@ import 'antd/dist/antd.css'
 import { Component } from 'react'
 import { getRandomNumber } from './Helper/utils'
 import { registerTicket, removeTicket, finish, reset } from './Helper/actions'
+
 import Lottery from './Components/Lottery'
 import AppHeader from './Components/AppHeader'
+import AppFooter from './Components/Footer'
 import Final from './Components/Final'
+import AboutUs from './Components/AboutUs'
+
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
 import { Layout } from 'antd'
 
 let { Content } = Layout
@@ -58,15 +64,21 @@ class App extends Component {
 
   render() {
     return (
-      <Layout className='layout'>
-        <AppHeader />
-        <Content style={{ padding: '0 50px', textAlign: 'center' }}>
-          <div className="site-layout-content">
-            {this.renderApp()}
-          </div>
-        </Content>
-
-      </Layout>
+      <BrowserRouter>
+        <Layout className='layout'>
+          <AppHeader />
+          <Content style={{ padding: '0 50px', textAlign: 'center' }}>
+            <div className="site-layout-content">
+              <Switch>
+                <Route path= '/' exact component={ () => this.renderApp() } />
+                <Route path= '/about' component={ AboutUs } />
+              </Switch>
+              
+            </div>
+          </Content>
+          <AppFooter />
+        </Layout>
+      </BrowserRouter>
     )
   }
 }
