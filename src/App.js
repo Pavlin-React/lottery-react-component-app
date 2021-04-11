@@ -10,7 +10,7 @@ import AppFooter from './Components/Footer'
 import Final from './Components/Final'
 import AboutUs from './Components/AboutUs'
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 import { Layout } from 'antd'
 
@@ -72,6 +72,7 @@ class App extends Component {
               <Switch>
                 <Route path= '/' exact component={ () => this.renderApp() } />
                 <Route path= '/about' component={ AboutUs } />
+                <Redirect from='*' to='about' />
               </Switch>
               
             </div>
