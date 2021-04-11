@@ -1,26 +1,29 @@
 import { Component } from 'react'
+import { Button, Card, Typography } from 'antd';
 
+let { Title } = Typography
 
 class LotteryTicket extends Component {
   render() {
     let { actions, index, color, number } = this.props
-    return(
-       <div
-        style={ {
-          backgroundColor : color,
-          padding         : 5,
-          width           : '60%',
-          margin          : 'auto'
-         } }
-       >
-        <button 
-        style={ { float: 'left'} }
-        onClick={ () => { actions.removeTicket( index ) } }
+    return (
+      <Card
+        style={{
+          backgroundColor: color,
+          
+          margin: 'auto'
+        }}
+      >
+        
+        This ticket has: <b><Title>{number}</Title></b>
+        <Button
+          block
+          onClick={() => { actions.removeTicket(index) }}
         >
-        X</button>
-        <small>This ticket has: <b>{ number }</b></small>
+          X
+        </Button>
 
-       </div>
+      </Card>
     )
   }
 }

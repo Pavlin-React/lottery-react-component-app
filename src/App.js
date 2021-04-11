@@ -1,4 +1,5 @@
 import './App.css';
+import 'antd/dist/antd.css'
 import { Component }                                      from 'react'
 import { getRandomNumber }                                from './Helper/utils'
 import { registerTicket, removeTicket, finish, reset }    from './Helper/actions'

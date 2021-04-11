@@ -1,14 +1,23 @@
 import { Component } from 'react'
 import LotteryTicket from './LotteryTicket'
+import { Button, Typography, Divider } from 'antd';
+
+let { Title } = Typography
 
 class Lottery extends Component {
   renderButton() {
     let { remainingTickets, actions } = this.props
     if ( remainingTickets > 0 ) {
-      return <button onClick={ actions.registerTicket }>Buy Ticket</button>
+      return <Button
+      type='primary'
+      onClick={ actions.registerTicket }
+      >Buy Ticket</Button>
     }
 
-    return <button onClick={ actions.finish }>Check to win</button>
+    return <Button 
+    type='primary'
+      
+     onClick={ actions.finish }>Check to win</Button>
   }
 
   renderTickets() {
@@ -31,12 +40,12 @@ class Lottery extends Component {
   render() {
     return(
       <>
-        <h2>Lottery</h2>
+        <Title>Lottery</Title>
         { this.renderButton() }
         <br />
         <small>Rest: { this.props.remainingTickets }</small>
         <br />
-        <hr />
+        <Divider />
         { this.renderTickets() }
       </>
     )

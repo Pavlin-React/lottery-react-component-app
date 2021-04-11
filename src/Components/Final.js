@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { removeTicket } from '../Helper/actions'
 import { getRandomColor } from '../Helper/utils'
+import { Button, Card } from 'antd';
 
 
 class Final extends Component {
@@ -37,10 +38,11 @@ class Final extends Component {
 
   render() {
     return(
-      <div style={ { backgroundColor: getRandomColor(), padding: 15 } }>
-        { this.isWinning() ? this.renderWinning() : this.renderTryAgain() }
-        <button onClick={ this.props.actions.reset }>Start Again</button>
-      </div>
+      <Card style={ { backgroundColor: getRandomColor() } }
+      title= { this.isWinning() ? this.renderWinning() : this.renderTryAgain() }>
+        
+        <Button type='primary' onClick={ this.props.actions.reset }>Start Again</Button>
+      </Card>
     )
   }
 }
